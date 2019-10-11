@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, ART } from 'react-native';
-const { Surface } = ART;
+import { Animated } from 'react-native';
+import { Surface } from '@react-native-community/art';
 
 import Circle from './animated/Circle';
 
 export default class Pulse extends Component {
   static propTypes = {
     size: PropTypes.number,
-    color: PropTypes.string
+    color: PropTypes.string,
   };
 
   static defaultProps = {
     size: 14,
-    color: '#000'
+    color: '#000',
   };
 
   state = {
-    bounces: [
-      new Animated.Value(1),
-      new Animated.Value(0)
-    ]
+    bounces: [new Animated.Value(1), new Animated.Value(0)],
   };
 
   componentDidMount() {
@@ -33,22 +30,20 @@ export default class Pulse extends Component {
   }
 
   animate(index) {
-    Animated
-      .sequence([
-        Animated.timing(this.state.bounces[index], {
-          toValue: 1,
-          duration: 1000
-        }),
-        Animated.timing(this.state.bounces[index], {
-          toValue: 0,
-          duration: 1000
-        })
-      ])
-      .start(() => {
-        if (!this.unmounted) {
-          this.animate(index);
-        }
-      });
+    Animated.sequence([
+      Animated.timing(this.state.bounces[index], {
+        toValue: 1,
+        duration: 1000,
+      }),
+      Animated.timing(this.state.bounces[index], {
+        toValue: 0,
+        duration: 1000,
+      }),
+    ]).start(() => {
+      if (!this.unmounted) {
+        this.animate(index);
+      }
+    });
   }
 
   render() {
@@ -57,23 +52,25 @@ export default class Pulse extends Component {
     const width = size * 2;
     const height = size * 2;
 
-    return (<Surface width={width} height={height}>
-      <Circle
-        radius={size}
-        fill={color}
-        scale={scale1}
-        opacity={0.6}
-        x={size}
-        y={size}
-      />
-      <Circle
-        radius={size}
-        fill={color}
-        scale={scale2}
-        opacity={0.6}
-        x={size}
-        y={size}
-      />
-    </Surface>);
+    return (
+      <Surface width={width} height={height}>
+        <Circle
+          radius={size}
+          fill={color}
+          scale={scale1}
+          opacity={0.6}
+          x={size}
+          y={size}
+        />
+        <Circle
+          radius={size}
+          fill={color}
+          scale={scale2}
+          opacity={0.6}
+          x={size}
+          y={size}
+        />
+      </Surface>
+    );
   }
 }

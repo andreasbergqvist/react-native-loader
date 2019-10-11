@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ART } from 'react-native';
-const { Shape, Path } = ART;
+import { Shape, Path } from '@react-native-community/art';
 
 export default class Bar extends Component {
   static propTypes = {
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired
+    height: PropTypes.number.isRequired,
   };
 
   render() {
@@ -20,6 +19,6 @@ export default class Bar extends Component {
       .line(-width, 0)
       .close();
 
-    return <Shape {...this.props} d={path}/>;
+    return <Shape {...this.props} d={path} />;
   }
 }

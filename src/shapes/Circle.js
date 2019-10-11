@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ART } from 'react-native';
-const { Shape, Path } = ART;
+import { Shape, Path } from '@react-native-community/art';
 
 export default class Circle extends Component {
   static propTypes = {
     radius: PropTypes.number.isRequired,
-    opacity: PropTypes.number
+    opacity: PropTypes.number,
   };
 
   render() {
@@ -18,6 +17,6 @@ export default class Circle extends Component {
       .arc(0, radius * -2, radius)
       .close();
 
-    return <Shape {...this.props} d={path}/>;
+    return <Shape {...this.props} d={path} />;
   }
 }
